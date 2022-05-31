@@ -16,7 +16,7 @@
 				}
 			},
 			{
-				"name": "dw_cidade_estatistica",
+				"name": "dw_cidade_estatistica_delta",
 				"type": "Copy",
 				"dependsOn": [
 					{
