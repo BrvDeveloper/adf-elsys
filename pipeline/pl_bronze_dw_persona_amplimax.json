@@ -1,0 +1,354 @@
+{
+	"name": "pl_bronze_dw_persona_amplimax",
+	"properties": {
+		"activities": [
+			{
+				"name": "set current_date",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "current_date",
+					"value": {
+						"value": "@utcnow('yyyyMMdd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "dw_persona_amplimax",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "set current_date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SK_Persona_Amplimax",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SK_Persona_Amplimax",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_IBGE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Codigo_IBGE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Estado",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Estado",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Nome_Cidade",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Nome_Cidade",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Nome_Mesorregiao",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Nome_Mesorregiao",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Frequencia_Meso",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Frequencia_Meso",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Tamanho_Amostra_Meso",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Tamanho_Amostra_Meso",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Frequencia_Estado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Frequencia_Estado",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Tamanho_Amostra_Estado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Tamanho_Amostra_Estado",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Operadora_Telefonia",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Operadora_Telefonia",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tecnologia_Conexao",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tecnologia_Conexao",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Banda",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Banda",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Consumo_Download",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Consumo_Download",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Antena",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tipo_Antena",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Equipamento",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tipo_Equipamento",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Localidade",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tipo_Localidade",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Classificacao_Persona",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tipo_Classificacao_Persona",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Inclusao",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Inclusao",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Alteracao",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Alteracao",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Inicio_Vigencia",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Inicio_Vigencia",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Fim_Vigencia",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Fim_Vigencia",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "dbo",
+							"tbName": "dw_persona_amplimax"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "bronze",
+							"path": {
+								"value": "dw_persona_amplimax",
+								"type": "Expression"
+							},
+							"fileName": "file.parquet"
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"current_date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "bronze"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-24T10:46:51Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

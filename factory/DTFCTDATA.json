@@ -1,0 +1,9 @@
+{
+	"name": "DTFCTDATA",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "438eff30-9fef-43cb-a9fa-eb5d89babc08",
+		"tenantId": "c5fa8fde-ed8d-4987-ae81-b5e26701457e"
+	}
+}

@@ -1,0 +1,706 @@
+{
+	"name": "pl_bronze_ods_dados_amplimax_mes_fechado",
+	"properties": {
+		"activities": [
+			{
+				"name": "set current_date",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "current_date",
+					"value": {
+						"value": "@utcnow('yyyyMMdd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ods_dados_amplimax_mes_fechado",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "set current_date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "CODIGO_LANCAMENTO",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CODIGO_LANCAMENTO",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "VERSAO_CABECALHO",
+									"type": "Byte[]",
+									"physicalType": "binary"
+								},
+								"sink": {
+									"name": "VERSAO_CABECALHO",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "DATA_COLETA",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DATA_COLETA",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "NUMERO_SERIAL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NUMERO_SERIAL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NUMERO_IMEI",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NUMERO_IMEI",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NUMERO_MAC",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NUMERO_MAC",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VERSAO_SOFTWARE_EQUIPAMENTO",
+									"type": "Byte[]",
+									"physicalType": "binary"
+								},
+								"sink": {
+									"name": "VERSAO_SOFTWARE_EQUIPAMENTO",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "VERSAO_SOFTWARE_MODULO_CELULAR",
+									"type": "Byte[]",
+									"physicalType": "binary"
+								},
+								"sink": {
+									"name": "VERSAO_SOFTWARE_MODULO_CELULAR",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "MCC_EQUIPAMENTO_CONECTADO",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "MCC_EQUIPAMENTO_CONECTADO",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "MNC_EQUIPAMENTO_CONECTADO",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "MNC_EQUIPAMENTO_CONECTADO",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "NOME_OPERADORA_TELEFONIA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NOME_OPERADORA_TELEFONIA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TECNOLOGIA_CONEXAO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TECNOLOGIA_CONEXAO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LARGURA_BANDA_DOWNLOAD",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LARGURA_BANDA_DOWNLOAD",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LARGURA_BANDA_UPLOAD",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LARGURA_BANDA_UPLOAD",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NIVEL_SINAL",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "NIVEL_SINAL",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "QUALIDADE_SINAL",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "QUALIDADE_SINAL",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "FREQUENCIA",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 16
+								},
+								"sink": {
+									"name": "FREQUENCIA",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_LOCALIZACAO_AREA_ERB",
+									"type": "Byte[]",
+									"physicalType": "binary"
+								},
+								"sink": {
+									"name": "CODIGO_LOCALIZACAO_AREA_ERB",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_ESTACAO_RADIOBASE",
+									"type": "Byte[]",
+									"physicalType": "binary"
+								},
+								"sink": {
+									"name": "CODIGO_ESTACAO_RADIOBASE",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "TENSAO_POE",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 16
+								},
+								"sink": {
+									"name": "TENSAO_POE",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "TEMPERATURA_PA",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TEMPERATURA_PA",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "TEMPERATURA_XO",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TEMPERATURA_XO",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "TEMPERATURA_PMIC",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TEMPERATURA_PMIC",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "TIPO_ANTENA",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "TIPO_ANTENA",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "MODO_DISCAGEM",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "MODO_DISCAGEM",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS_CONEXAO",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "STATUS_CONEXAO",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "HABILITACAO_IPV6",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "HABILITACAO_IPV6",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "HABILITACAO_RESET_PROGRAMADO",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "HABILITACAO_RESET_PROGRAMADO",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "UTILIZACAO_TELEFONE",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "UTILIZACAO_TELEFONE",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "DATA_INCLUSAO_COLETA",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DATA_INCLUSAO_COLETA",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_BINARIO",
+									"type": "Byte[]",
+									"physicalType": "varbinary"
+								},
+								"sink": {
+									"name": "CODIGO_BINARIO",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "IP_REDE_WAN",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IP_REDE_WAN",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LATITUDE_GPS",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 9
+								},
+								"sink": {
+									"name": "LATITUDE_GPS",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "LONGITUDE_GPS",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 9
+								},
+								"sink": {
+									"name": "LONGITUDE_GPS",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "DATA_INCLUSAO",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DATA_INCLUSAO",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "DATA_ALTERACAO",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DATA_ALTERACAO",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "ORIGEM",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ORIGEM",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 26
+								},
+								"sink": {
+									"name": "CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 26
+								},
+								"sink": {
+									"name": "CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "DATA_REFERENCIA",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DATA_REFERENCIA",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "LATITUDE_ERB",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 9
+								},
+								"sink": {
+									"name": "LATITUDE_ERB",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "LONGITUDE_ERB",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 9
+								},
+								"sink": {
+									"name": "LONGITUDE_ERB",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "NOME_CIDADE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NOME_CIDADE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NOME_ESTADO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NOME_ESTADO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NOME_REGIAO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NOME_REGIAO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VERSAO_SOFTWARE_EQUIPAMENTO_ORIGEM",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VERSAO_SOFTWARE_EQUIPAMENTO_ORIGEM",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VERSAO_SOFTWARE_MODULO_CELULAR_ORIGEM",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "VERSAO_SOFTWARE_MODULO_CELULAR_ORIGEM",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NR_RANK_DESC",
+									"type": "Int64",
+									"physicalType": "bigint"
+								},
+								"sink": {
+									"name": "NR_RANK_DESC",
+									"type": "Int64",
+									"physicalType": "INT_64"
+								}
+							},
+							{
+								"source": {
+									"name": "NR_RANK_ASC",
+									"type": "Int64",
+									"physicalType": "bigint"
+								},
+								"sink": {
+									"name": "NR_RANK_ASC",
+									"type": "Int64",
+									"physicalType": "INT_64"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "dbo",
+							"tbName": "ods_dados_amplimax_mes_fechado"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "bronze",
+							"path": {
+								"value": "ods_dados_amplimax_mes_fechado",
+								"type": "Expression"
+							},
+							"fileName": "file.parquet"
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"current_date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "bronze"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-24T10:46:51Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

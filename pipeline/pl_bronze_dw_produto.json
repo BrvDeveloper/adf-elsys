@@ -1,0 +1,354 @@
+{
+	"name": "pl_bronze_dw_produto",
+	"properties": {
+		"activities": [
+			{
+				"name": "set current_date",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "current_date",
+					"value": {
+						"value": "@utcnow('yyyyMMdd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "dw_produto",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "set current_date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SK_Produto",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SK_Produto",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Codigo_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Filial_Elsys",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Codigo_Filial_Elsys",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Produto_Extendida",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Produto_Extendida",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Negocio",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Negocio",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tipo_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Unidade_Medida_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Unidade_Medida_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Projeto",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Projeto",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Nome_Projeto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Nome_Projeto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Material",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tipo_Material",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Familia_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Codigo_Familia_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Familia_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Familia_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Grupo_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Grupo_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Subgrupo_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Codigo_Subgrupo_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Subgrupo_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Subgrupo_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Flag_Serial",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Flag_Serial",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Inclusao",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Inclusao",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Alteracao",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Alteracao",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Celula",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Celula",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CELULA_PROTHEUS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CELULA_PROTHEUS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "dbo",
+							"tbName": "dw_produto"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "bronze",
+							"path": {
+								"value": "dw_produto",
+								"type": "Expression"
+							},
+							"fileName": "file.parquet"
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"current_date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "bronze"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-24T10:46:54Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

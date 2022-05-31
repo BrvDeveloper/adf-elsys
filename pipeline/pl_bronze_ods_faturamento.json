@@ -1,0 +1,738 @@
+{
+	"name": "pl_bronze_ods_faturamento",
+	"properties": {
+		"activities": [
+			{
+				"name": "set current_date",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "current_date",
+					"value": {
+						"value": "@utcnow('yyyyMMdd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ods_faturamento",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "set current_date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "NUMERO_NOTA_FISCAL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NUMERO_NOTA_FISCAL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SERIE_NOTA_FISCAL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SERIE_NOTA_FISCAL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ITEM_NOTA_FISCAL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ITEM_NOTA_FISCAL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DATA_EMISSAO_NOTA_FISCAL",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "DATA_EMISSAO_NOTA_FISCAL",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_PRODUTO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_PRODUTO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_EMPRESA_ELSYS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_EMPRESA_ELSYS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_FILIAL_ELSYS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_FILIAL_ELSYS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_CLIENTE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_CLIENTE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_FILIAL_CLIENTE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_FILIAL_CLIENTE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_CANAL_VENDAS",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_CANAL_VENDAS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_REGIAO_ATENDIMENTO_CLIENTE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_REGIAO_ATENDIMENTO_CLIENTE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_REGIONAL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_REGIONAL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_CONDICAO_PAGAMENTO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_CONDICAO_PAGAMENTO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_REPRESENTANTE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_REPRESENTANTE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_TRANSPORTADORA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_TRANSPORTADORA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "OPERACAO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "OPERACAO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CFOP",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CFOP",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "QUANTIDADE_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "QUANTIDADE_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_UNITARIO_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_UNITARIO_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_CUSTO_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_CUSTO_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_DESCONTO_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_DESCONTO_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_IPI_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_IPI_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_ICMS_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_ICMS_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_ISS_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_ISS_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_INSS_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_INSS_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_IRRF_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_IRRF_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_PIS_RETIDO_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_PIS_RETIDO_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_CONFINS_RETIDO_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_CONFINS_RETIDO_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_CONTRIBUICAO_SOCIAL_RETIDO_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_CONTRIBUICAO_SOCIAL_RETIDO_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_PIS_APURACAO_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_PIS_APURACAO_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_CONFINS_APURACAO_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_CONFINS_APURACAO_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_FRETE_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_FRETE_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_TOTAL_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_TOTAL_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "DATA_INCLUSAO",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DATA_INCLUSAO",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "DATA_ALTERACAO",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DATA_ALTERACAO",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_VENDEDOR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_VENDEDOR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "QUANTIDADE_PRODUTO_CARTEIRA",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "QUANTIDADE_PRODUTO_CARTEIRA",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_PRODUTO_CARTEIRA",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_PRODUTO_CARTEIRA",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "GRUPO_OPERACAO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GRUPO_OPERACAO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_BASE",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_BASE",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "CODIGO_TES",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CODIGO_TES",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "LOGIN_LOJA_ECOMMERCE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LOGIN_LOJA_ECOMMERCE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "QUANTIDADE_BONIFICACAO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "QUANTIDADE_BONIFICACAO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_PRODUTO_BONIFICACAO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_PRODUTO_BONIFICACAO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_UNITARIO_TABELA",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_UNITARIO_TABELA",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "NUMERO_PEDIDO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NUMERO_PEDIDO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS_PEDIDO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "STATUS_PEDIDO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NUMERO_ITEM_PEDIDO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NUMERO_ITEM_PEDIDO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PAIS_EQUIPAMENTO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PAIS_EQUIPAMENTO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FORMA_PAGAMENTO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FORMA_PAGAMENTO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CIDADE_EQUIPAMENTO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CIDADE_EQUIPAMENTO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "VALOR_DIFAL_PRODUTO",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "VALOR_DIFAL_PRODUTO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "NUMERO_PROPOSTA_SOLAR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NUMERO_PROPOSTA_SOLAR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "dbo",
+							"tbName": "ods_faturamento"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "bronze",
+							"path": {
+								"value": "ods_faturamento",
+								"type": "Expression"
+							},
+							"fileName": "file.parquet"
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"current_date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "bronze"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-24T10:46:52Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,1300 @@
+{
+	"name": "pl_bronze_dw_fato_proposta_solar_data",
+	"properties": {
+		"activities": [
+			{
+				"name": "set current_date",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "current_date",
+					"value": {
+						"value": "@utcnow('yyyyMMdd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ingest dw_fato_proposta_solar",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "set current_date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Data_Referencia",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "Data_Referencia",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Numero_Proposta",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Numero_Proposta",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Solar",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Solar",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Distribuidor",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Distribuidor",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "SK_Distribuidor",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SK_Distribuidor",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Documento",
+									"type": "String",
+									"physicalType": "char"
+								},
+								"sink": {
+									"name": "Codigo_Documento",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Status",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Status",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Status",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Status",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Situacao",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Situacao",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Situacao",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Situacao",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Versao",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Versao",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Fase",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Fase",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Tensao",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Tensao",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Modulo",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Modulo",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Orientacao_Telhado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Orientacao_Telhado",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Marca",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Marca",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Marca_Estrutura",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Marca_Estrutura",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Telhado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Telhado",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Nome_Cliente",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Nome_Cliente",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Nome_Projeto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Nome_Projeto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Sigla_Estado_Cliente",
+									"type": "String",
+									"physicalType": "char"
+								},
+								"sink": {
+									"name": "Sigla_Estado_Cliente",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Cidade_Cliente",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Cidade_Cliente",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "SK_Cidade_Estatistica_Cliente",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SK_Cidade_Estatistica_Cliente",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Flag_Inclui_Monitoramento",
+									"type": "String",
+									"physicalType": "char"
+								},
+								"sink": {
+									"name": "Flag_Inclui_Monitoramento",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Frete",
+									"type": "String",
+									"physicalType": "char"
+								},
+								"sink": {
+									"name": "Tipo_Frete",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Proposta",
+									"type": "String",
+									"physicalType": "char"
+								},
+								"sink": {
+									"name": "Tipo_Proposta",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Abertura_Proposta",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Abertura_Proposta",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Vencimento_Projeto",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Vencimento_Projeto",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Flag_Proposta_Excluida",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Flag_Proposta_Excluida",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Total_Projeto_Elsys",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_Total_Projeto_Elsys",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Total_Projeto_Margem",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_Total_Projeto_Margem",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Codigo_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantidade_Sugerida_Produto",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Quantidade_Sugerida_Produto",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Unitario_Produto",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_Unitario_Produto",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Unitario_Produto_Margem",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_Unitario_Produto_Margem",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Total_Produto",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_Total_Produto",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantidade_Proposta_Digitada",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Quantidade_Proposta_Digitada",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantidade_Proposta_Pendente",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Quantidade_Proposta_Pendente",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantidade_Proposta_Rejeitada",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Quantidade_Proposta_Rejeitada",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantidade_Proposta_Aguardando_Aprovacao",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Quantidade_Proposta_Aguardando_Aprovacao",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantidade_Proposta_Aprovada",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Quantidade_Proposta_Aprovada",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantidade_Proposta_Cancelada",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Quantidade_Proposta_Cancelada",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantidade_Proposta_Gerada",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Quantidade_Proposta_Gerada",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantidade_Proposta",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Quantidade_Proposta",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "SK_Produto_Unificado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SK_Produto_Unificado",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "SK_Executivo_Conta",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SK_Executivo_Conta",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "SK_Executivo_Conta_Familia",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SK_Executivo_Conta_Familia",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Status_Pedido_Protheus",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Status_Pedido_Protheus",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Total_Projeto_Final",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_Total_Projeto_Final",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Porcentagem_Instalacao",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Porcentagem_Instalacao",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Porcentagem_Projeto",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Porcentagem_Projeto",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Condicao_Pagamento",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Condicao_Pagamento",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Condicao_Pagamento",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Condicao_Pagamento",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Login_Usuario_Insercao",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Login_Usuario_Insercao",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Consumo_Media_Anual",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Consumo_Media_Anual",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Potencia_Calculada",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Potencia_Calculada",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Avaliacao_CSAT",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Avaliacao_CSAT",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Servico_CSAT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Servico_CSAT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Pesquisa_CSAT",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Pesquisa_CSAT",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Comentario_CSAT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Comentario_CSAT",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Distribuidor_Bruto",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_Distribuidor_Bruto",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Distribuidor_Liquido",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_Distribuidor_Liquido",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Status_Proposta",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Status_Proposta",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Status_Proposta_Origem",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Status_Proposta_Origem",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Status_Proposta_Final",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Status_Proposta_Final",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "SK_Pre_Pedido_Solar",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SK_Pre_Pedido_Solar",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_NF_Servico_Instalacao",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_NF_Servico_Instalacao",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_NF_Servico_Projeto",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_NF_Servico_Projeto",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Operadora_Pagamento",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Operadora_Pagamento",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantidade_Vezes_Pagamento",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Quantidade_Vezes_Pagamento",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Percentual_Taxa_Cartao",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Percentual_Taxa_Cartao",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Custo_Unitario_Produto",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_Custo_Unitario_Produto",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Custo_Total_Produto",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 23
+								},
+								"sink": {
+									"name": "Valor_Custo_Total_Produto",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Filial",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Filial",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Hora_Emissao_Nota_Fiscal",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Hora_Emissao_Nota_Fiscal",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Status_Pedido",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Status_Pedido",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Total_Carteira_Faturamento",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "Valor_Total_Carteira_Faturamento",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "Grupo_Operacao",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Grupo_Operacao",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Fechamento_Pre_Pedido",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Fechamento_Pre_Pedido",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Envio_Pre_Pedido",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Envio_Pre_Pedido",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Realizada_Entrega",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "Data_Realizada_Entrega",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Numero_Rank",
+									"type": "Int64",
+									"physicalType": "bigint"
+								},
+								"sink": {
+									"name": "Numero_Rank",
+									"type": "Int64",
+									"physicalType": "INT_64"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Pis_Cofins",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 8,
+									"precision": 20
+								},
+								"sink": {
+									"name": "Valor_Pis_Cofins",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Frete",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 18
+								},
+								"sink": {
+									"name": "Valor_Frete",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Taxa_Cartao",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 8,
+									"precision": 29
+								},
+								"sink": {
+									"name": "Valor_Taxa_Cartao",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Repasse",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 13
+								},
+								"sink": {
+									"name": "Valor_Repasse",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Comissao_Distribuidor",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 12
+								},
+								"sink": {
+									"name": "Valor_Comissao_Distribuidor",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Valor_Margem",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 8,
+									"precision": 34
+								},
+								"sink": {
+									"name": "Valor_Margem",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Tempo_Proposta_Fechado_Cliente",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Tempo_Proposta_Fechado_Cliente",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Tempo_Pedido_Envio_Protheus",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Tempo_Pedido_Envio_Protheus",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Tempo_Pedido_Faturado_Protheus",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Tempo_Pedido_Faturado_Protheus",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Tempo_Total_Faturado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Tempo_Total_Faturado",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Tempo_Total_Entregue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Tempo_Total_Entregue",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Inclusao",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Inclusao",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Alteracao",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Alteracao",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "dbo",
+							"tbName": "dw_fato_proposta_solar"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "bronze",
+							"path": {
+								"value": "dbo/dw_fato_proposta_solar/@{variables('current_date')}",
+								"type": "Expression"
+							},
+							"fileName": "file.parquet"
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"current_date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "bronze"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-24T10:46:51Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,290 @@
+{
+	"name": "pl_bronze_ods_dados_amplimax_consumo",
+	"properties": {
+		"activities": [
+			{
+				"name": "set current_date",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "current_date",
+					"value": {
+						"value": "@utcnow('yyyyMMdd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ods_dados_amplimax_consumo",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "set current_date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ANO_MES",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ANO_MES",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NUMERO_SERIAL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NUMERO_SERIAL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MENOR_CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 28
+								},
+								"sink": {
+									"name": "MENOR_CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "PRIMEIRO_CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 28
+								},
+								"sink": {
+									"name": "PRIMEIRO_CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "ULTIMO_CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 28
+								},
+								"sink": {
+									"name": "ULTIMO_CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "ULTIMO_MES_ANTERIOR_CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 28
+								},
+								"sink": {
+									"name": "ULTIMO_MES_ANTERIOR_CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "MENOR_CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 28
+								},
+								"sink": {
+									"name": "MENOR_CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "PRIMEIRO_CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 28
+								},
+								"sink": {
+									"name": "PRIMEIRO_CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "ULTIMO_CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 28
+								},
+								"sink": {
+									"name": "ULTIMO_CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "ULTIMO_MES_ANTERIOR_CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 28
+								},
+								"sink": {
+									"name": "ULTIMO_MES_ANTERIOR_CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "TOTAL_CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 28
+								},
+								"sink": {
+									"name": "TOTAL_CONSUMO_DADOS_BYTE_DOWNLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "TOTAL_CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 28
+								},
+								"sink": {
+									"name": "TOTAL_CONSUMO_DADOS_BYTE_UPLOAD",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "DATA_INCLUSAO",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DATA_INCLUSAO",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "DATA_ALTERACAO",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DATA_ALTERACAO",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "dbo",
+							"tbName": "ods_dados_amplimax_consumo"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "bronze",
+							"path": {
+								"value": "ods_dados_amplimax_consumo",
+								"type": "Expression"
+							},
+							"fileName": "file.parquet"
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"current_date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "bronze"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-24T10:46:58Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

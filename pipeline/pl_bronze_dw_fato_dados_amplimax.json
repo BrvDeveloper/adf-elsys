@@ -1,0 +1,1206 @@
+{
+	"name": "pl_bronze_dw_fato_dados_amplimax",
+	"properties": {
+		"activities": [
+			{
+				"name": "set current_date",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "current_date",
+					"value": {
+						"value": "@utcnow('yyyyMMdd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "dw_fato_dados_amplimax",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "set current_date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Data_Referencia",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "Data_Referencia",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Evento",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Evento",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Habilitacao",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Habilitacao",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Habilitacao",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Habilitacao",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Ocorrencia",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Ocorrencia",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Ultima_Ocorrencia",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Ultima_Ocorrencia",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Ultima_Ocorrencia",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Ultima_Ocorrencia",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Lancamento",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Lancamento",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Versao_Cabecalho",
+									"type": "Byte[]",
+									"physicalType": "binary"
+								},
+								"sink": {
+									"name": "Versao_Cabecalho",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Coleta",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Coleta",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Sk_Produto",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Sk_Produto",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Produto",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Codigo_Produto",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Numero_Serial",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Numero_Serial",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tipo_Equipamento",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tipo_Equipamento",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Finalidade_Equipamento",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Finalidade_Equipamento",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Numero_Imei",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Numero_Imei",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Numero_Mac",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Numero_Mac",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Versao_Software_Equipamento_Hexadecimal",
+									"type": "Byte[]",
+									"physicalType": "binary"
+								},
+								"sink": {
+									"name": "Versao_Software_Equipamento_Hexadecimal",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "Versao_Software_Equipamento_Inteiro",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Versao_Software_Equipamento_Inteiro",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Versao_Software_Modulo_Celular_Hexadecimal",
+									"type": "Byte[]",
+									"physicalType": "binary"
+								},
+								"sink": {
+									"name": "Versao_Software_Modulo_Celular_Hexadecimal",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "Versao_Software_Modulo_Celular_Inteiro",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Versao_Software_Modulo_Celular_Inteiro",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Mcc_Equipamento_Conectado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Mcc_Equipamento_Conectado",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Pais_Equipamento",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Pais_Equipamento",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Mnc_Equipamento_Conectado",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Mnc_Equipamento_Conectado",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Nome_Operadora_Telefonia",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Nome_Operadora_Telefonia",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Nome_Operadora_Telefonia_Simplificada",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Nome_Operadora_Telefonia_Simplificada",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tecnologia_Conexao",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tecnologia_Conexao",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Tecnologia_Conexao_Simplificada",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Tecnologia_Conexao_Simplificada",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Largura_Banda_Download",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Largura_Banda_Download",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Largura_Banda_Upload",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Largura_Banda_Upload",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Nivel_Sinal",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Nivel_Sinal",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Qualidade_Sinal",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Qualidade_Sinal",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Banda",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Banda",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Frequencia",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 1,
+									"precision": 9
+								},
+								"sink": {
+									"name": "Frequencia",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Localizacao_Area_Erb_Hexadecimal",
+									"type": "Byte[]",
+									"physicalType": "binary"
+								},
+								"sink": {
+									"name": "Codigo_Localizacao_Area_Erb_Hexadecimal",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Localizacao_Area_Erb_Inteiro",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Localizacao_Area_Erb_Inteiro",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Estacao_Radiobase_Hexadecimal",
+									"type": "Byte[]",
+									"physicalType": "binary"
+								},
+								"sink": {
+									"name": "Codigo_Estacao_Radiobase_Hexadecimal",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Estacao_Radiobase_Inteiro",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Estacao_Radiobase_Inteiro",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Tensao_Poe",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 1,
+									"precision": 9
+								},
+								"sink": {
+									"name": "Tensao_Poe",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Temperatura_Pa",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Temperatura_Pa",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Temperatura_Xo",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Temperatura_Xo",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Temperatura_Pmic",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Temperatura_Pmic",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Tipo_Antena",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "Codigo_Tipo_Antena",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Tipo_Antena",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Tipo_Antena",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Modo_Discagem",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "Codigo_Modo_Discagem",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Modo_Discagem",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Modo_Discagem",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Status_Conexao",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "Codigo_Status_Conexao",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Status_Conexao",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Status_Conexao",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Habilitacao_Ipv6",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "Codigo_Habilitacao_Ipv6",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Habilitacao_Ipv6",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Habilitacao_Ipv6",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Habilitacao_Reset_Programado",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "Codigo_Habilitacao_Reset_Programado",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Habilitacao_Reset_Programado",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Habilitacao_Reset_Programado",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Utilizacao_Telefone",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "Codigo_Utilizacao_Telefone",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "Descricao_Utilizacao_Telefone",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Descricao_Utilizacao_Telefone",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Inclusao_Coleta",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Inclusao_Coleta",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Binario",
+									"type": "Byte[]",
+									"physicalType": "varbinary"
+								},
+								"sink": {
+									"name": "Codigo_Binario",
+									"type": "Byte[]",
+									"physicalType": "BINARY"
+								}
+							},
+							{
+								"source": {
+									"name": "Ip_Rede_Wan",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Ip_Rede_Wan",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Latitude",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 9
+								},
+								"sink": {
+									"name": "Latitude",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Longitude",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 9
+								},
+								"sink": {
+									"name": "Longitude",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Sk_Cidade_Estatistica",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Sk_Cidade_Estatistica",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Cidade",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Cidade",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Parametro_Localizacao",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Parametro_Localizacao",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Sk_Distribuidor",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Sk_Distribuidor",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Distribuidor",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Codigo_Distribuidor",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Sk_Cliente_Elsys",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Sk_Cliente_Elsys",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Cliente",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Codigo_Cliente",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Codigo_Filial_Cliente",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Codigo_Filial_Cliente",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Inclusao",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Inclusao",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Alteracao",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Data_Alteracao",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Latitude_Gps",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 9
+								},
+								"sink": {
+									"name": "Latitude_Gps",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Longitude_Gps",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 9
+								},
+								"sink": {
+									"name": "Longitude_Gps",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Latitude_Erb",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 9
+								},
+								"sink": {
+									"name": "Latitude_Erb",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Longitude_Erb",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 6,
+									"precision": 9
+								},
+								"sink": {
+									"name": "Longitude_Erb",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Distancia_Erb_Gps",
+									"type": "Double",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "Distancia_Erb_Gps",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "Grupo_Distancia_Erb_Gps",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Grupo_Distancia_Erb_Gps",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Nome_Cidade_Amplimax",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Nome_Cidade_Amplimax",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Sigla_Estado_Amplimax",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Sigla_Estado_Amplimax",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Flag_Fora_Brasil",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Flag_Fora_Brasil",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Consumo_Dados_Byte_Upload",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 26
+								},
+								"sink": {
+									"name": "Consumo_Dados_Byte_Upload",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Consumo_Dados_Byte_Download",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 26
+								},
+								"sink": {
+									"name": "Consumo_Dados_Byte_Download",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Consumo_Dados_Byte_Upload_Acumulado",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 26
+								},
+								"sink": {
+									"name": "Consumo_Dados_Byte_Upload_Acumulado",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Consumo_Dados_Byte_Download_Acumulado",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 0,
+									"precision": 26
+								},
+								"sink": {
+									"name": "Consumo_Dados_Byte_Download_Acumulado",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Producao_Produto",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "Data_Producao_Produto",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Faturamento",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "Data_Faturamento",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "Faixa_Consumo_Dados_GB_Upload",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Faixa_Consumo_Dados_GB_Upload",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Faixa_Consumo_Dados_GB_Download",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Faixa_Consumo_Dados_GB_Download",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Sk_Persona_Amplimax",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Sk_Persona_Amplimax",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Acuracia",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "Acuracia",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "Versao_Software_Equipamento_Origem",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Versao_Software_Equipamento_Origem",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "Versao_Software_Modulo_Celular_Origem",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Versao_Software_Modulo_Celular_Origem",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "dbo",
+							"tbName": "dw_fato_dados_amplimax"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "dwd",
+							"path": {
+								"value": "dbo/dw_fato_dados_amplimax",
+								"type": "Expression"
+							},
+							"fileName": "file.parquet"
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"current_date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "bronze"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-24T10:46:51Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

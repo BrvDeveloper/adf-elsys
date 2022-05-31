@@ -1,0 +1,235 @@
+{
+	"name": "Parquet2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "file.parquet",
+				"folderPath": "dbo/ods_dados_amplimax_mes_fechado",
+				"fileSystem": "ods"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "CODIGO_LANCAMENTO",
+				"type": "INT32"
+			},
+			{
+				"name": "VERSAO_CABECALHO",
+				"type": "BINARY"
+			},
+			{
+				"name": "DATA_COLETA",
+				"type": "INT96"
+			},
+			{
+				"name": "NUMERO_SERIAL",
+				"type": "UTF8"
+			},
+			{
+				"name": "NUMERO_IMEI",
+				"type": "UTF8"
+			},
+			{
+				"name": "NUMERO_MAC",
+				"type": "UTF8"
+			},
+			{
+				"name": "VERSAO_SOFTWARE_EQUIPAMENTO",
+				"type": "BINARY"
+			},
+			{
+				"name": "VERSAO_SOFTWARE_MODULO_CELULAR",
+				"type": "BINARY"
+			},
+			{
+				"name": "MCC_EQUIPAMENTO_CONECTADO",
+				"type": "INT32"
+			},
+			{
+				"name": "MNC_EQUIPAMENTO_CONECTADO",
+				"type": "INT32"
+			},
+			{
+				"name": "NOME_OPERADORA_TELEFONIA",
+				"type": "UTF8"
+			},
+			{
+				"name": "TECNOLOGIA_CONEXAO",
+				"type": "UTF8"
+			},
+			{
+				"name": "LARGURA_BANDA_DOWNLOAD",
+				"type": "UTF8"
+			},
+			{
+				"name": "LARGURA_BANDA_UPLOAD",
+				"type": "UTF8"
+			},
+			{
+				"name": "NIVEL_SINAL",
+				"type": "INT32"
+			},
+			{
+				"name": "QUALIDADE_SINAL",
+				"type": "INT32"
+			},
+			{
+				"name": "FREQUENCIA",
+				"type": "DECIMAL",
+				"precision": 16,
+				"scale": 6
+			},
+			{
+				"name": "CODIGO_LOCALIZACAO_AREA_ERB",
+				"type": "BINARY"
+			},
+			{
+				"name": "CODIGO_ESTACAO_RADIOBASE",
+				"type": "BINARY"
+			},
+			{
+				"name": "TENSAO_POE",
+				"type": "DECIMAL",
+				"precision": 16,
+				"scale": 6
+			},
+			{
+				"name": "TEMPERATURA_PA",
+				"type": "INT32"
+			},
+			{
+				"name": "TEMPERATURA_XO",
+				"type": "INT32"
+			},
+			{
+				"name": "TEMPERATURA_PMIC",
+				"type": "INT32"
+			},
+			{
+				"name": "TIPO_ANTENA",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "MODO_DISCAGEM",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "STATUS_CONEXAO",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "HABILITACAO_IPV6",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "HABILITACAO_RESET_PROGRAMADO",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "UTILIZACAO_TELEFONE",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "DATA_INCLUSAO_COLETA",
+				"type": "INT96"
+			},
+			{
+				"name": "CODIGO_BINARIO",
+				"type": "BINARY"
+			},
+			{
+				"name": "IP_REDE_WAN",
+				"type": "UTF8"
+			},
+			{
+				"name": "LATITUDE_GPS",
+				"type": "DECIMAL",
+				"precision": 9,
+				"scale": 6
+			},
+			{
+				"name": "LONGITUDE_GPS",
+				"type": "DECIMAL",
+				"precision": 9,
+				"scale": 6
+			},
+			{
+				"name": "DATA_INCLUSAO",
+				"type": "INT96"
+			},
+			{
+				"name": "DATA_ALTERACAO",
+				"type": "INT96"
+			},
+			{
+				"name": "ORIGEM",
+				"type": "UTF8"
+			},
+			{
+				"name": "CONSUMO_DADOS_BYTE_UPLOAD",
+				"type": "DECIMAL",
+				"precision": 26,
+				"scale": 0
+			},
+			{
+				"name": "CONSUMO_DADOS_BYTE_DOWNLOAD",
+				"type": "DECIMAL",
+				"precision": 26,
+				"scale": 0
+			},
+			{
+				"name": "DATA_REFERENCIA",
+				"type": "INT96"
+			},
+			{
+				"name": "LATITUDE_ERB",
+				"type": "DECIMAL",
+				"precision": 9,
+				"scale": 6
+			},
+			{
+				"name": "LONGITUDE_ERB",
+				"type": "DECIMAL",
+				"precision": 9,
+				"scale": 6
+			},
+			{
+				"name": "NOME_CIDADE",
+				"type": "UTF8"
+			},
+			{
+				"name": "NOME_ESTADO",
+				"type": "UTF8"
+			},
+			{
+				"name": "NOME_REGIAO",
+				"type": "UTF8"
+			},
+			{
+				"name": "VERSAO_SOFTWARE_EQUIPAMENTO_ORIGEM",
+				"type": "UTF8"
+			},
+			{
+				"name": "VERSAO_SOFTWARE_MODULO_CELULAR_ORIGEM",
+				"type": "UTF8"
+			},
+			{
+				"name": "NR_RANK_DESC",
+				"type": "INT64"
+			},
+			{
+				"name": "NR_RANK_ASC",
+				"type": "INT64"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
