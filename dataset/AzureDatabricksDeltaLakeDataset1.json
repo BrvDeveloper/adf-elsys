@@ -1,0 +1,305 @@
+{
+	"name": "AzureDatabricksDeltaLakeDataset1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDatabricksDeltaLake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureDatabricksDeltaLakeDataset",
+		"typeProperties": {
+			"database": "bronze",
+			"table": "dw_cidade_estatistica"
+		},
+		"schema": [
+			{
+				"name": "SK_Cidade_Estatistica",
+				"type": "integer"
+			},
+			{
+				"name": "Codigo_Cidade",
+				"type": "integer"
+			},
+			{
+				"name": "Codigo_IBGE",
+				"type": "integer"
+			},
+			{
+				"name": "Nome_Cidade",
+				"type": "string"
+			},
+			{
+				"name": "Nome_Cidade_Abreviado",
+				"type": "string"
+			},
+			{
+				"name": "Nome_Cidade_IBGE",
+				"type": "string"
+			},
+			{
+				"name": "Sigla_Estado",
+				"type": "string"
+			},
+			{
+				"name": "Nome_Cidade_Sem_Acento",
+				"type": "string"
+			},
+			{
+				"name": "Codigo_Mesorregiao",
+				"type": "string"
+			},
+			{
+				"name": "Nome_Mesorregiao",
+				"type": "string"
+			},
+			{
+				"name": "Codigo_Microrregiao",
+				"type": "string"
+			},
+			{
+				"name": "Nome_Microrregiao",
+				"type": "string"
+			},
+			{
+				"name": "Latitude_Cidade",
+				"type": "decimal(11,7)"
+			},
+			{
+				"name": "Longitude_Cidade",
+				"type": "decimal(11,7)"
+			},
+			{
+				"name": "Flag_Abre_Bairro",
+				"type": "string"
+			},
+			{
+				"name": "Nome_Usuario_Log_Inclusao",
+				"type": "string"
+			},
+			{
+				"name": "Data_Log_Inclusao",
+				"type": "timestamp"
+			},
+			{
+				"name": "Nome_Usuario_Log_Alteracao",
+				"type": "string"
+			},
+			{
+				"name": "Data_Log_Alteracao",
+				"type": "timestamp"
+			},
+			{
+				"name": "Codigo_Tipo_Local",
+				"type": "string"
+			},
+			{
+				"name": "Codigo_Cidade_Pai",
+				"type": "integer"
+			},
+			{
+				"name": "Valor_Percentual_Cobertura_Hughes",
+				"type": "decimal(6,2)"
+			},
+			{
+				"name": "Codigo_Classificacao_Loja_Hughes",
+				"type": "string"
+			},
+			{
+				"name": "Descricao_Situacao_Cidade",
+				"type": "string"
+			},
+			{
+				"name": "Codigo_Globo",
+				"type": "integer"
+			},
+			{
+				"name": "Quantidade_Populacao",
+				"type": "integer"
+			},
+			{
+				"name": "Quantidade_Populacao_Rural",
+				"type": "integer"
+			},
+			{
+				"name": "Valor_Renda_Per_Capita",
+				"type": "decimal(15,2)"
+			},
+			{
+				"name": "Quantidade_DTV",
+				"type": "integer"
+			},
+			{
+				"name": "Quantidade_Telespectador_Potencial",
+				"type": "integer"
+			},
+			{
+				"name": "Quantidade_Pessoa_Domicilio",
+				"type": "decimal(10,6)"
+			},
+			{
+				"name": "Quantidade_Penetracao_DTV",
+				"type": "decimal(10,6)"
+			},
+			{
+				"name": "Flag_Tem_OI",
+				"type": "string"
+			},
+			{
+				"name": "Flag_Tem_SKY",
+				"type": "string"
+			},
+			{
+				"name": "Flag_Tem_CLARO",
+				"type": "string"
+			},
+			{
+				"name": "Numero_Antena_OI",
+				"type": "integer"
+			},
+			{
+				"name": "Numero_Antena_SKY",
+				"type": "integer"
+			},
+			{
+				"name": "Numero_Antena_CLARO",
+				"type": "integer"
+			},
+			{
+				"name": "Quantidade_Ponto",
+				"type": "integer"
+			},
+			{
+				"name": "Descricao_Ponto_Motivo",
+				"type": "string"
+			},
+			{
+				"name": "Flag_Globo_Exclusiva",
+				"type": "string"
+			},
+			{
+				"name": "Codigo_Classificacao_Loja_OI",
+				"type": "string"
+			},
+			{
+				"name": "Codigo_TV_Regional",
+				"type": "integer"
+			},
+			{
+				"name": "Nome_Filial",
+				"type": "string"
+			},
+			{
+				"name": "Descricao_TV_Regional",
+				"type": "string"
+			},
+			{
+				"name": "Data_Inclusao",
+				"type": "timestamp"
+			},
+			{
+				"name": "Data_Alteracao",
+				"type": "timestamp"
+			},
+			{
+				"name": "Data_Inicio_Vigencia",
+				"type": "timestamp"
+			},
+			{
+				"name": "Data_Fim_Vigencia",
+				"type": "integer"
+			},
+			{
+				"name": "Flag_Mais_Atual",
+				"type": "string"
+			},
+			{
+				"name": "Quantidade_Domicilio_Total",
+				"type": "integer"
+			},
+			{
+				"name": "Quantidade_Domicilio_Urbano",
+				"type": "integer"
+			},
+			{
+				"name": "Quantidade_Domicilio_Rural",
+				"type": "integer"
+			},
+			{
+				"name": "Flag_Tem_NET",
+				"type": "string"
+			},
+			{
+				"name": "Flag_Tem_YAHSAT",
+				"type": "string"
+			},
+			{
+				"name": "Codigo_DDD",
+				"type": "integer"
+			},
+			{
+				"name": "Satelite_HUGHES",
+				"type": "string"
+			},
+			{
+				"name": "Nome_Estado_Com_Acento",
+				"type": "string"
+			},
+			{
+				"name": "Nome_Estado_Sem_Acento",
+				"type": "string"
+			},
+			{
+				"name": "Flag_Nova_Adesao_Hughes",
+				"type": "string"
+			},
+			{
+				"name": "Flag_Globo_Exclusiva_SKY",
+				"type": "string"
+			},
+			{
+				"name": "Filial_Globo_SKY",
+				"type": "string"
+			},
+			{
+				"name": "Quantidade_Domicilio_Casa",
+				"type": "integer"
+			},
+			{
+				"name": "Quantidade_Domicilio_Casa_Vila_Condominio",
+				"type": "integer"
+			},
+			{
+				"name": "Quantidade_Domicilio_Apartamento",
+				"type": "integer"
+			},
+			{
+				"name": "Quantidade_Domicilio_Outros",
+				"type": "integer"
+			},
+			{
+				"name": "Covid_Tendencia",
+				"type": "string"
+			},
+			{
+				"name": "Covid_Porcentagem_Utilizacao_UTI",
+				"type": "decimal(10,5)"
+			},
+			{
+				"name": "Covid_Classificacao",
+				"type": "string"
+			},
+			{
+				"name": "Covid_Taxa_Obito",
+				"type": "decimal(10,5)"
+			},
+			{
+				"name": "Data_Atualizacao_Covid",
+				"type": "timestamp"
+			},
+			{
+				"name": "Covid_Novos_Casos",
+				"type": "decimal(10,5)"
+			}
+		]
+	}
+}

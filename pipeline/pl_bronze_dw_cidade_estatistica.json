@@ -41,12 +41,9 @@
 						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
+						"type": "AzureDatabricksDeltaLakeSink",
+						"importSettings": {
+							"type": "AzureDatabricksDeltaLakeImportCommand"
 						}
 					},
 					"enableStaging": false,
@@ -56,891 +53,724 @@
 							{
 								"source": {
 									"name": "SK_Cidade_Estatistica",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "SK_Cidade_Estatistica",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_Cidade",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Codigo_Cidade",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_IBGE",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Codigo_IBGE",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Cidade",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Cidade",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Cidade_Abreviado",
-									"type": "String",
-									"physicalType": "nvarchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Cidade_Abreviado",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Cidade_IBGE",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Cidade_IBGE",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Sigla_Estado",
-									"type": "String",
-									"physicalType": "char"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Sigla_Estado",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Cidade_Sem_Acento",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Cidade_Sem_Acento",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_Mesorregiao",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Codigo_Mesorregiao",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Mesorregiao",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Mesorregiao",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_Microrregiao",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Codigo_Microrregiao",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Microrregiao",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Microrregiao",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Latitude_Cidade",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 7,
-									"precision": 11
+									"type": "Decimal"
 								},
 								"sink": {
 									"name": "Latitude_Cidade",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
+									"type": "Decimal"
 								}
 							},
 							{
 								"source": {
 									"name": "Longitude_Cidade",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 7,
-									"precision": 11
+									"type": "Decimal"
 								},
 								"sink": {
 									"name": "Longitude_Cidade",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
+									"type": "Decimal"
 								}
 							},
 							{
 								"source": {
 									"name": "Flag_Abre_Bairro",
-									"type": "String",
-									"physicalType": "char"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Flag_Abre_Bairro",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Usuario_Log_Inclusao",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Usuario_Log_Inclusao",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Data_Log_Inclusao",
-									"type": "DateTime",
-									"physicalType": "datetime"
+									"type": "DateTime"
 								},
 								"sink": {
 									"name": "Data_Log_Inclusao",
-									"type": "DateTime",
-									"physicalType": "INT_96"
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Usuario_Log_Alteracao",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Usuario_Log_Alteracao",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Data_Log_Alteracao",
-									"type": "DateTime",
-									"physicalType": "datetime"
+									"type": "DateTime"
 								},
 								"sink": {
 									"name": "Data_Log_Alteracao",
-									"type": "DateTime",
-									"physicalType": "INT_96"
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_Tipo_Local",
-									"type": "String",
-									"physicalType": "char"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Codigo_Tipo_Local",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_Cidade_Pai",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Codigo_Cidade_Pai",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Valor_Percentual_Cobertura_Hughes",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 6
+									"type": "Decimal"
 								},
 								"sink": {
 									"name": "Valor_Percentual_Cobertura_Hughes",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
+									"type": "Decimal"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_Classificacao_Loja_Hughes",
-									"type": "String",
-									"physicalType": "char"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Codigo_Classificacao_Loja_Hughes",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Descricao_Situacao_Cidade",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Descricao_Situacao_Cidade",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_Globo",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Codigo_Globo",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Populacao",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Populacao",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Populacao_Rural",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Populacao_Rural",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Valor_Renda_Per_Capita",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 15
+									"type": "Decimal"
 								},
 								"sink": {
 									"name": "Valor_Renda_Per_Capita",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
+									"type": "Decimal"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_DTV",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_DTV",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Telespectador_Potencial",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Telespectador_Potencial",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Pessoa_Domicilio",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 6,
-									"precision": 10
+									"type": "Decimal"
 								},
 								"sink": {
 									"name": "Quantidade_Pessoa_Domicilio",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
+									"type": "Decimal"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Penetracao_DTV",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 6,
-									"precision": 10
+									"type": "Decimal"
 								},
 								"sink": {
 									"name": "Quantidade_Penetracao_DTV",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
+									"type": "Decimal"
 								}
 							},
 							{
 								"source": {
 									"name": "Flag_Tem_OI",
-									"type": "String",
-									"physicalType": "char"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Flag_Tem_OI",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Flag_Tem_SKY",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Flag_Tem_SKY",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Flag_Tem_CLARO",
-									"type": "String",
-									"physicalType": "char"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Flag_Tem_CLARO",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Numero_Antena_OI",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Numero_Antena_OI",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Numero_Antena_SKY",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Numero_Antena_SKY",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Numero_Antena_CLARO",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Numero_Antena_CLARO",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Ponto",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Ponto",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Descricao_Ponto_Motivo",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Descricao_Ponto_Motivo",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Flag_Globo_Exclusiva",
-									"type": "String",
-									"physicalType": "char"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Flag_Globo_Exclusiva",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_Classificacao_Loja_OI",
-									"type": "String",
-									"physicalType": "char"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Codigo_Classificacao_Loja_OI",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_TV_Regional",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Codigo_TV_Regional",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Filial",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Filial",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Descricao_TV_Regional",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Descricao_TV_Regional",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Data_Inclusao",
-									"type": "DateTime",
-									"physicalType": "datetime"
+									"type": "DateTime"
 								},
 								"sink": {
 									"name": "Data_Inclusao",
-									"type": "DateTime",
-									"physicalType": "INT_96"
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
 									"name": "Data_Alteracao",
-									"type": "DateTime",
-									"physicalType": "datetime"
+									"type": "DateTime"
 								},
 								"sink": {
 									"name": "Data_Alteracao",
-									"type": "DateTime",
-									"physicalType": "INT_96"
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
 									"name": "Data_Inicio_Vigencia",
-									"type": "DateTime",
-									"physicalType": "datetime"
+									"type": "DateTime"
 								},
 								"sink": {
 									"name": "Data_Inicio_Vigencia",
-									"type": "DateTime",
-									"physicalType": "INT_96"
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
 									"name": "Data_Fim_Vigencia",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Data_Fim_Vigencia",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Flag_Mais_Atual",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Flag_Mais_Atual",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Domicilio_Total",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Domicilio_Total",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Domicilio_Urbano",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Domicilio_Urbano",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Domicilio_Rural",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Domicilio_Rural",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Flag_Tem_NET",
-									"type": "String",
-									"physicalType": "char"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Flag_Tem_NET",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Flag_Tem_YAHSAT",
-									"type": "String",
-									"physicalType": "char"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Flag_Tem_YAHSAT",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Codigo_DDD",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Codigo_DDD",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Satelite_HUGHES",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Satelite_HUGHES",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Estado_Com_Acento",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Estado_Com_Acento",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Nome_Estado_Sem_Acento",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Nome_Estado_Sem_Acento",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Flag_Nova_Adesao_Hughes",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Flag_Nova_Adesao_Hughes",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Flag_Globo_Exclusiva_SKY",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Flag_Globo_Exclusiva_SKY",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Filial_Globo_SKY",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Filial_Globo_SKY",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Domicilio_Casa",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Domicilio_Casa",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Domicilio_Casa_Vila_Condominio",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Domicilio_Casa_Vila_Condominio",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Domicilio_Apartamento",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Domicilio_Apartamento",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Quantidade_Domicilio_Outros",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								},
 								"sink": {
 									"name": "Quantidade_Domicilio_Outros",
-									"type": "Int32",
-									"physicalType": "INT_32"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Covid_Tendencia",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Covid_Tendencia",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Covid_Porcentagem_Utilizacao_UTI",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 5,
-									"precision": 10
+									"type": "Decimal"
 								},
 								"sink": {
 									"name": "Covid_Porcentagem_Utilizacao_UTI",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
+									"type": "Decimal"
 								}
 							},
 							{
 								"source": {
 									"name": "Covid_Classificacao",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Covid_Classificacao",
-									"type": "String",
-									"physicalType": "UTF8"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Covid_Taxa_Obito",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 5,
-									"precision": 10
+									"type": "Decimal"
 								},
 								"sink": {
 									"name": "Covid_Taxa_Obito",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
+									"type": "Decimal"
 								}
 							},
 							{
 								"source": {
 									"name": "Data_Atualizacao_Covid",
-									"type": "DateTime",
-									"physicalType": "datetime"
+									"type": "DateTime"
 								},
 								"sink": {
 									"name": "Data_Atualizacao_Covid",
-									"type": "DateTime",
-									"physicalType": "INT_96"
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
 									"name": "Covid_Novos_Casos",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 5,
-									"precision": 10
+									"type": "Decimal"
 								},
 								"sink": {
 									"name": "Covid_Novos_Casos",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
+									"type": "Decimal"
 								}
 							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
+						]
 					}
 				},
 				"inputs": [
@@ -955,16 +785,8 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet1",
-						"type": "DatasetReference",
-						"parameters": {
-							"container": "bronze",
-							"path": {
-								"value": "dw_cidade_estatistica",
-								"type": "Expression"
-							},
-							"fileName": "file.parquet"
-						}
+						"referenceName": "AzureDatabricksDeltaLakeDataset1",
+						"type": "DatasetReference"
 					}
 				]
 			}
