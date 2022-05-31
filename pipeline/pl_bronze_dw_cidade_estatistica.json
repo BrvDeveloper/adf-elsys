@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "set current_date_new",
+				"name": "set current_date_new_2",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": [],
@@ -20,7 +20,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "set current_date_new",
+						"activity": "set current_date_new_2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
